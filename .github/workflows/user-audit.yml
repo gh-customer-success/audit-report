@@ -43,7 +43,6 @@ jobs:
           echo "| ---- | ---------- |" >> $GITHUB_STEP_SUMMARY
           echo ${{ steps.repo_permission_audit.outputs.data }} | jq -r '.repository.collaborators.edges[0] | "\(.node.login) | \(.permission)"' >> $GITHUB_STEP_SUMMARY
           echo ${{ steps.repo_permission_audit.outputs.data }} | jq -r '.repository.collaborators.edges[0] | "\(.node.login) | \(.permission)"' >> $GITHUB_STEP_SUMMARY
-        run: |
           echo ${{ steps.repo_permission_audit.outputs.data }}
       
       - name: Write to CSV file
