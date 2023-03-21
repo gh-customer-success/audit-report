@@ -33,14 +33,15 @@ jobs:
           affiliation: 'ALL'
         env:
           GITHUB_TOKEN: ${{ secrets.OCTODEMO_REPO_AUDIT }} 
+        run: echo  ${{ steps.repo_permission_audit.outputs.data }} >> $GITHUB_OUTPUT
       - name: Write to CSV file
         uses: gr2m/write-csv-file-action@v1.0.0
         with:
           path: data/repo-permission.csv
           columns: repo, user, permission
           "repo": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.nameWithOwner }}
-          "user": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges.node.login }}
-          "permission": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges.permission }}
+          "user": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges[0].node.login }}
+          "permission": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges[0].permission }}
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
         with:
