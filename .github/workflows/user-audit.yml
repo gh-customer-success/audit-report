@@ -37,7 +37,7 @@ jobs:
         uses: gr2m/write-csv-file-action@v1.0.0
         with:
           path: data/repo-permission.csv
-          columns: repo, user, permission
+          columns: repo 
           "repo": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.nameWithOwner }}
-          "user": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges.node.login }}
-          "permission": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges.permission }}
+          ##"user": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges.node.login }}
+          ##"permission": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges.permission }}
