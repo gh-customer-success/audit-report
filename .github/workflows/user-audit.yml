@@ -32,14 +32,9 @@ jobs:
           repo: ${{ vars.REPO}}
           affiliation: 'ALL'
         env:
-          GITHUB_TOKEN: ${{ secrets.OCTODEMO_REPO_AUDIT }}
-  writeCsv:
-    needs: logRepoPermissions
-    runs-on: ubuntu-latest
-    steps:
+          GITHUB_TOKEN: ${{ secrets.OCTODEMO_REPO_AUDIT }} 
       - name: Write to CSV file
         uses: gr2m/write-csv-file-action@v1.0.0
-
         with:
           path: data/repo-permission.csv
           columns: repo, user, permission
