@@ -39,8 +39,8 @@ jobs:
           path: data/repo-permission.csv
           columns: repo, user, permission
           "repo": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.nameWithOwner }}
-          "user": ${{ fromJson(steps.repo_permission_audit.outputs.data).edges[0].node.login }}
-          "permission": ${{ fromJson(steps.repo_permission_audit.outputs.data).edges[0].permission }}
+          "user": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges[0].node.login }}
+          "permission": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges[0].permission }}
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
         with:
