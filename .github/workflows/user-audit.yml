@@ -41,3 +41,8 @@ jobs:
           "repo": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.nameWithOwner }}
           ##"user": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges.node.login }}
           ##"permission": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges.permission }}
+       - name: Archive code coverage results
+         uses: actions/upload-artifact@v3
+         with:
+          name: repo-audit-results
+          path: data/repo-permission.csv
