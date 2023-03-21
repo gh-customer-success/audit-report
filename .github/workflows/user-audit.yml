@@ -35,5 +35,5 @@ jobs:
           repo: ${{ github.event.repository.name }}
           affiliation: 'ALL'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.OCTODEMO_REPO_AUDIT }}
       - run: "echo 'latest permissions: ${{ steps.repo_permission_audit.outputs.data }}'"
