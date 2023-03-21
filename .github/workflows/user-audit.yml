@@ -10,19 +10,20 @@ jobs:
         with:
           query: |
             query repo_permissions($owner: String!, $repo: String!, $affiliation: CollaboratorAffiliation!, $endCursor: String) {
-            repository(owner: $owner, name: $repo) {
-             nameWithOwner
-              collaborators(first: 100, affiliation: $affiliation, after: $endCursor) {
-                  pageInfo {
-                    endCursor
-                    hasNextPage
-                  }
-                  edges {
-                    permission
-                    node {
-                      isEmployee
-                      login
-                      name
+              repository(owner: $owner, name: $repo) {
+               nameWithOwner
+                collaborators(first: 100, affiliation: $affiliation, after: $endCursor) {
+                    pageInfo {
+                      endCursor
+                      hasNextPage
+                    }
+                    edges {
+                      permission
+                      node {
+                        isEmployee
+                        login
+                        name
+                      }
                     }
                   }
                 }
