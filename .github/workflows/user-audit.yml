@@ -42,8 +42,8 @@ jobs:
             echo ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges.node.login }}, ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges.permission }}
           columns: repo 
           "repo": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.nameWithOwner }}
-          ##"user": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges.node.login }}
-          ##"permission": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges.permission }}
+          ##"user": ${{ fromJson(steps.repo_permission_audit.outputs.data) }}
+          ##"permission": ${{ fromJson(steps.repo_permission_audit.outputs.data) }}
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
         with:
