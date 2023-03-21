@@ -37,13 +37,10 @@ jobs:
         uses: gr2m/write-csv-file-action@v1.0.0
         with:
           path: data/repo-permission.csv
-          run: |
-            echo "repo,user,permission"
-            echo ${{ JSON.stringify(steps.repo_permission_audit.outputs.data)  }}, ${{ fromJson(steps.repo_permission_audit.outputs.data) }}
           columns: repo 
           "repo": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.nameWithOwner }}
-          ##"user": ${{ fromJson(steps.repo_permission_audit.outputs.data) }}
-          ##"permission": ${{ fromJson(steps.repo_permission_audit.outputs.data) }}
+          "user": ${{ fromJson(steps.repo_permission_audit.outputs.data).edges.node.login }}
+          "permission": ${{ fromJson(steps.repo_permission_audit.outputs.data).edges.permission }}
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
         with:
