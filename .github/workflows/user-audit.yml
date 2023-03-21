@@ -38,6 +38,6 @@ jobs:
         with:
           path: data/repo-permission.csv
           columns: repo, user, permission
-          "repo": ${{ fromJson(steps.logRepoPermissions.outputs.data).repository.nameWithOwner }}
-          "user": ${{ fromJson(steps.logRepoPermissions.outputs.data).repository.collaborators.edges.node.login }}
-          "permission": ${{ fromJson(steps.logRepoPermissions.outputs.data).repository.collaborators.edges.permission }}
+          "repo": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.nameWithOwner }}
+          "user": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges.node.login }}
+          "permission": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges.permission }}
