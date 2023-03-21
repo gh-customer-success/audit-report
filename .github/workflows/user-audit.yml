@@ -1,0 +1,39 @@
+//workflow that is triggered by a workflow dispatch event that calls a graphql query to get a list of users and their roles
+name: User Audit
+
+on:
+  workflow_dispatch:
+ 
+jobs:
+  logRepoPermissions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: octokit/graphql-action@v2.x
+        id: repo_permission_audit
+        with:
+          query: |
+            query ($owner: String!, $repo: String!, $affiliation: CollaboratorAffiliation!, $endCursor: String) {
+            repository(owner: $owner, name: $repo) {
+             nameWithOwner
+            collaborators(first: 100, affiliation: $affiliation, after: $endCursor) {
+                pageInfo {
+                  endCursor
+                  hasNextPage
+                }
+                edges {
+                  permission
+                  node {
+                    isEmployee
+                    login
+                    name
+                  }
+                }
+              }
+            }
+
+          owner: ${{ github.event.repository.owner.name }}
+          repo: ${{ github.event.repository.name }}
+          affiliation: 'ALL'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: "echo 'latest permissions: ${{ steps.repo_permission_audit.outputs.data }}'"
