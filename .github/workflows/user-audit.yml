@@ -29,8 +29,8 @@ jobs:
               }
             }
 
-          owner: ${{ github.event.repository.owner.name }}
-          repo: ${{ github.event.repository.name }}
+          owner: ${{ vars.OWNER }}
+          repo: ${{ vars.REPO}}
           affiliation: 'ALL'
         env:
           GITHUB_TOKEN: ${{ secrets.OCTODEMO_REPO_AUDIT }}
