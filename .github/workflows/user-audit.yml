@@ -9,25 +9,24 @@ jobs:
         id: repo_permission_audit
         with:
           query: |
-            query ($owner: String!, $repo: String!, $affiliation: CollaboratorAffiliation!, $endCursor: String) {
+            query repo_permissions($owner: String!, $repo: String!, $affiliation: CollaboratorAffiliation!, $endCursor: String) {
             repository(owner: $owner, name: $repo) {
              nameWithOwner
-            collaborators(first: 100, affiliation: $affiliation, after: $endCursor) {
-                pageInfo {
-                  endCursor
-                  hasNextPage
-                }
-                edges {
-                  permission
-                  node {
-                    isEmployee
-                    login
-                    name
+              collaborators(first: 100, affiliation: $affiliation, after: $endCursor) {
+                  pageInfo {
+                    endCursor
+                    hasNextPage
+                  }
+                  edges {
+                    permission
+                    node {
+                      isEmployee
+                      login
+                      name
+                    }
                   }
                 }
               }
-            }
-
           owner: ${{ vars.OWNER }}
           repo: ${{ vars.REPO}}
           affiliation: 'ALL'
