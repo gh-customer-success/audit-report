@@ -33,7 +33,19 @@ jobs:
           affiliation: 'ALL'
         env:
           GITHUB_TOKEN: ${{ secrets.OCTODEMO_REPO_AUDIT }} 
-      - run: echo '${{ steps.repo_permission_audit.outputs.data }}' >> $GITHUB_STEP_SUMMARY
+      - name: Generate Output
+      ## generate markdown table for GitHub Job summary
+        run: |
+          echo "## Repo Permissions" >> $GITHUB_STEP_SUMMARY
+          echo "Repo: ${{ vars.OWNER }}/${{ vars.REPO}}" >> $GITHUB_STEP_SUMMARY
+          echo "Collaborators:" >> $GITHUB_STEP_SUMMARY
+          echo "| User | Permission |" >> $GITHUB_STEP_SUMMARY
+          echo "| ---- | ---------- |" >> $GITHUB_STEP_SUMMARY
+          echo ${{ steps.repo_permission_audit.outputs.data }} | jq -r '.repository.collaborators.edges[0] | "\(.node.login) | \(.permission)"' >> $GITHUB_STEP_SUMMARY
+          echo ${{ steps.repo_permission_audit.outputs.data }} | jq -r '.repository.collaborators.edges[0] | "\(.node.login) | \(.permission)"' >> $GITHUB_STEP_SUMMARY
+        run: |
+          echo ${{ steps.repo_permission_audit.outputs.data }}
+      
       - name: Write to CSV file
         uses: gr2m/write-csv-file-action@v1.0.0
         with:
