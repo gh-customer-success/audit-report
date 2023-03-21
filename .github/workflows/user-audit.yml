@@ -39,7 +39,7 @@ jobs:
           path: data/repo-permission.csv
           run: |
             echo "repo,user,permission"
-            echo ${{ fromJson(steps.repo_permission_audit.outputs.data)  }}, ${{ fromJson(steps.repo_permission_audit.outputs.data) }}
+            echo ${{ JSON.stringify(steps.repo_permission_audit.outputs.data)  }}, ${{ fromJson(steps.repo_permission_audit.outputs.data) }}
           columns: repo 
           "repo": ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.nameWithOwner }}
           ##"user": ${{ fromJson(steps.repo_permission_audit.outputs.data) }}
