@@ -33,4 +33,12 @@ jobs:
           affiliation: 'ALL'
         env:
           GITHUB_TOKEN: ${{ secrets.OCTODEMO_REPO_AUDIT }}
-      - run: "echo 'latest permissions: ${{ steps.repo_permission_audit.outputs.data }}'"
+  writeCsv:
+    runs-on: ubuntu-latest 
+      - uses: gr2m/write-csv-file-action@v1.x
+        with:
+          path: data/repo-permission.csv
+          columns: repo, user, permission
+          "repo": ${{ fromJson(steps.logRepoPermissions.outputs.data).repository.nameWithOwner }}
+          "user": ${{ fromJson(steps.logRepoPermissions.outputs.data).repository.collaborators.edges.node.login }}
+          "permission": ${{ fromJson(steps.logRepoPermissions.outputs.data).repository.collaborators.edges.permission }}
