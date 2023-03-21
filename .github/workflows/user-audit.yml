@@ -34,6 +34,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.OCTODEMO_REPO_AUDIT }}
   writeCsv:
+    needs: logRepoPermissions
     runs-on: ubuntu-latest
     steps:
       - name: Write to CSV file
