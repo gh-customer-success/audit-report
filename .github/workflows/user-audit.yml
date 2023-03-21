@@ -34,8 +34,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.OCTODEMO_REPO_AUDIT }}
   writeCsv:
-    runs-on: ubuntu-latest 
-      - uses: gr2m/write-csv-file-action@v1.x
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write to CSV file
+        uses: gr2m/write-csv-file-action@v1.0.0
+
         with:
           path: data/repo-permission.csv
           columns: repo, user, permission
