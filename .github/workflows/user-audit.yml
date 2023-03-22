@@ -42,9 +42,7 @@ jobs:
           echo "Collaborators:" >> $GITHUB_STEP_SUMMARY
           echo "| User | Permission |" >> $GITHUB_STEP_SUMMARY
           echo "| ---- | ---------- |" >> $GITHUB_STEP_SUMMARY
-          userName= ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges[0].node.login }}
-          permission= ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges[0].permission }}
-          echo "| ${userName} | ${permission} |" >> $GITHUB_STEP_SUMMARY
+          echo "| ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges[0].node.login }} | ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges[0].permission }} |" >> $GITHUB_STEP_SUMMARY
           echo ${{ steps.repo_permission_audit.outputs.data }}
       
       - name: Write to CSV file
