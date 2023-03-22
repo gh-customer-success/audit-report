@@ -36,14 +36,14 @@ jobs:
       - name: Generate Output
       ## generate markdown table for GitHub Job summary
         run: |
-          login = ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges[0].node.login }}
+          user = ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges[0].node.login }}
           permission = ${{ fromJson(steps.repo_permission_audit.outputs.data).repository.collaborators.edges[0].permission }}
           echo "## Repo Permissions" >> $GITHUB_STEP_SUMMARY
           echo "Repo: ${{ vars.OWNER }}/${{ vars.REPO}}" >> $GITHUB_STEP_SUMMARY
           echo "Collaborators:" >> $GITHUB_STEP_SUMMARY
           echo "| User | Permission |" >> $GITHUB_STEP_SUMMARY
           echo "| ---- | ---------- |" >> $GITHUB_STEP_SUMMARY
-          echo "| ${login} | ${permission} |" >> $GITHUB_STEP_SUMMARY
+          echo "| ${user} | ${permission} |" >> $GITHUB_STEP_SUMMARY
           echo ${{ steps.repo_permission_audit.outputs.data }}
       
       - name: Write to CSV file
