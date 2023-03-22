@@ -2,7 +2,7 @@ name: User Audit
 on:
   workflow_dispatch:
 jobs:
-  logRepoPermissions:
+   Repo-Permissions:
     runs-on: ubuntu-latest
     steps:
       - uses: octokit/graphql-action@v2.x
