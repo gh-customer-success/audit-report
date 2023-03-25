@@ -5,7 +5,7 @@ jobs:
    Repo-Permissions:
     runs-on: ubuntu-latest
     steps:
-      - uses: gh-customer-success/user-audit@9b262550bc1689d86da59a38f0896bcef7f75a57
+      - uses: gh-customer-success/user-audit@663985ba18fda33d9823dd4f7187d4ed836df546
         with:
           api_token: ${{ secrets.OCTODEMO_REPO_AUDIT }}
           owner: ${{ github.repository_owner }}
