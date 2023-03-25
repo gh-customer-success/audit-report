@@ -7,7 +7,6 @@ jobs:
     steps:
       - uses: gh-customer-success/user-audit@c59d397bb2bb60b0b8f98a6880e9cbec11bb7f07
         with:
-          api-token: ${{ secrets.GITHUB_TOKEN }}
-          org: ${{ github.repository_owner }}
+          api_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
           repo: ${{vars.repo}}
-       
