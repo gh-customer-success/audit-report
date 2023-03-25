@@ -5,7 +5,7 @@ jobs:
    Repo-Permissions:
     runs-on: ubuntu-latest
     steps:
-      - uses: gh-customer-success/user-audit@c59d397bb2bb60b0b8f98a6880e9cbec11bb7f07
+      - uses: gh-customer-success/user-audit@d33d6fa14c633ad9736d6f315b294af0374eda1d
         with:
           api_token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
