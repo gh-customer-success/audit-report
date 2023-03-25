@@ -9,25 +9,56 @@ jobs:
         id: repo_permission_audit
         with:
           query: |
-            query repo_permissions($owner: String!, $repo: String!, $affiliation: CollaboratorAffiliation!, $endCursor: String) {
+            query ($owner: String!, $repo: String!, $affiliation: CollaboratorAffiliation!, $endCursor: String) {
               repository(owner: $owner, name: $repo) {
-               nameWithOwner
+                nameWithOwner
                 collaborators(first: 100, affiliation: $affiliation, after: $endCursor) {
-                    pageInfo {
-                      endCursor
-                      hasNextPage
-                    }
-                    edges {
-                      permission
-                      node {
-                        isEmployee
-                        login
-                        name
-                      }
+                  pageInfo {
+                    endCursor
+                    hasNextPage
+                  }
+                  edges {
+                    permission
+                    node {
+                      isEmployee
+                      login
+                      name
                     }
                   }
                 }
               }
+
+            organization(login: $owner) {
+
+              teams(first:100){
+                edges{
+                  node{
+                    name
+                    updatedAt
+
+                    members {
+                      edges {
+                        node {
+                          login
+
+                        }
+                      }
+                    }
+
+                    repositories(first:100, query:$repo){
+
+                       edges {
+                            permission
+                            node {
+                                name
+                            }
+                        }
+                    }
+                  }
+                }
+              }
+            }
+            }
           owner: ${{ vars.OWNER }}
           repo: ${{ vars.REPO}}
           affiliation: 'ALL'
