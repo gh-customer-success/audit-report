@@ -7,6 +7,6 @@ jobs:
     steps:
       - uses: gh-customer-success/user-audit@efc88244d967dfb2ab93ea16a2ee65c133dd2348
         with:
-          api_token: ${{ secrets.GITHUB_TOKEN }}
+          api_token: ${{ secrets.OCTODEMO_REPO_AUDIT }}
           owner: ${{ github.repository_owner }}
           repo: ${{vars.repo}}
