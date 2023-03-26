@@ -15,4 +15,4 @@ jobs:
         id: audit
       -
         name: print output
-        run: echo "${{steps.audit.output.response}}"
+        run: echo "${{steps.audit.outputs.response}}"
