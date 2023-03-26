@@ -5,8 +5,14 @@ jobs:
    Repo-Permissions:
     runs-on: ubuntu-latest
     steps:
+      -
+        name: run audit
       - uses: gh-customer-success/user-audit@f090594085499fb3f36fd8227cafc335b72486be
         with:
           api_token: ${{ secrets.OCTODEMO_REPO_AUDIT }}
           owner: ${{ vars.OWNER }}
           repo: ${{vars.repo}}
+        id: run-audit
+      -
+        name: print output
+        run: echo("${{steps.run-audit.output}}")
