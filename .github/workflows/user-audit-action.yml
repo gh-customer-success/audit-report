@@ -12,7 +12,7 @@ jobs:
           api_token: ${{ secrets.OCTODEMO_REPO_AUDIT }}
           owner: ${{ vars.OWNER }}
           repo: ${{vars.repo}}
-        id: run-audit
+        id: audit
       -
         name: print output
-        run: echo("${{steps.run-audit.output}}")
+        run: echo "${{steps.audit.output}}"
