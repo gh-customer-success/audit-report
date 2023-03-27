@@ -7,7 +7,7 @@ jobs:
     steps:
       -
         name: run audit
-        uses: gh-customer-success/user-audit@01015946ef4af415370e2b67c1635191fabae8c5
+        uses: gh-customer-success/user-audit@f0094dd3d7d3b02231c20258088dbcc11a0af410
         with:
           api_token: ${{ secrets.OCTODEMO_REPO_AUDIT }}
           owner: ${{ vars.OWNER }}
@@ -15,4 +15,6 @@ jobs:
         id: audit
       -
         name: print output
-        run: echo "${{steps.audit.outputs.response}}"
+        run: |
+          echo "TEAMS ${{steps.audit.outputs.teams}}"
+          echo "REPOS ${{steps.audit.outputs.repos}}"
