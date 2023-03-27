@@ -63,7 +63,7 @@ jobs:
       - name: Generate Output
       ## generate markdown table for GitHub Job summary
         run: |
-        
+          echo "| ${{ fromJson(steps.repo_permission_audit.outputs.data)}}
           echo "## Repo Permissions" >> $GITHUB_STEP_SUMMARY
           echo "Repo: ${{ vars.OWNER }}/${{ vars.REPO}}" >> $GITHUB_STEP_SUMMARY
           echo "Collaborators:" >> $GITHUB_STEP_SUMMARY
