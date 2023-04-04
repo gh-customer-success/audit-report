@@ -7,7 +7,7 @@ jobs:
     steps:
       -
         name: run audit
-        uses: gh-customer-success/user-audit@02a8b846bcf4cccfd07411a94065040ad770b5ab
+        uses: gh-customer-success/user-audit@4c50893c4acf4c993141bd4e26f7fc7f83a1810b
         with:
           api_token: ${{ secrets.OCTODEMO_REPO_AUDIT }}
           owner: ${{ vars.OWNER }}
