@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: gh-customer-success/github-user-audit@main
         with:
-          api-token: ${{ secrets.USER_AUDIT}}
+          api_token: ${{ secrets.USER_AUDIT}}
           owner: ${{ github.repository_owner }}
         id: audit
        
